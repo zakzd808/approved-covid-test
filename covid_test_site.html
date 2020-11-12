@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> map test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for Autocomplete search bar */
+        #pac-card {
+            background-color: #fff;
+            border-radius: 2px 0 0 2px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            font-family: Roboto;
+            margin: 10px 10px 0 0;
+            -moz-box-sizing: border-box;
+            outline: none;
+        }
+
+        #pac-container {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-right: 12px;
+        }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+
+        #title {
+            color: #fff;
+            background-color: #acbcc9;
+            font-size: 18px;
+            font-weight: 400;
+            padding: 6px 12px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Styling for an info pane that slides out from the left. 
+         * Hidden by default. */
+        #panel {
+            height: 100%;
+            width: null;
+            background-color: white;
+            position: fixed;
+            z-index: 1;
+            overflow-x: hidden;
+            transition: all .2s ease-out;
+        }
+
+        .open {
+            width: 250px;
+        }
+
+        .place {
+            font-family: 'open sans', arial, sans-serif;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-block-end: 0px;
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+
+        .distanceText {
+            color: silver;
+            font-family: 'open sans', arial, sans-serif;
+            font-size: 1em;
+            font-weight: 400;
+            margin-block-start: 0.25em;
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- this div will hold you map -->
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            // pick center coordinates for your map
+            var myMapCenter = {
+                lat: 45.547980,
+                lng: -122.700498
+            };
+
+
+            // create map and say which HTML element it should appear in
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: myMapCenter,
+                zoom: 14
+            });
+
+            // Load the stores GeoJSON onto the map.
+            map.data.loadGeoJson('stores.json', {
+                idPropertyName: 'storeid'
+            });
+
+            const apiKey = 'AIzaSyC2QAcz4Y1MAWXMYb6xhKQBWShUnxjrTmc';
+            const infoWindow = new google.maps.InfoWindow();
+
+
+            // show the information for a store when its marker is clicked
+            map.data.addListener('click', (event) => {
+                const category = event.feature.getProperty('category');
+                const name = event.feature.getProperty('name');
+                const description = event.feature.getProperty('description');
+                const hours = event.feature.getProperty('hours');
+                const phone = event.feature.getProperty('phone');
+                const position = event.feature.getGeometry().get();
+                const content = `
+                <img style="float:left; width:200px; margin-top:30px" src="img/logo_${category}.png">
+                <div style="margin-left:220px; margin-bottom:20px;">
+                <h2>${name}</h2><p>${description}>/p>
+                    <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
+                    <p><img src="https://maps.googleapis.com/maps/api/streetview?size=350x120&location=${position.lat()},${position.lng()}&key=${apiKey}"></p>
+                    </div>
+                `;
+
+                infoWindow.setContent(content);
+                infoWindow.setPosition(position);
+                infoWindow.setOptions({
+                    pixelOffset: new google.maps.Size(0, -30)
+                });
+                infoWindow.open(map);
+            });
+
+            // build and add the search bar
+
+            const card = document.createElement('div');
+            const titleBar = document.createElement('div');
+            const title = document.createElement('div');
+            const container = document.createElement('div');
+            const input = document.createElement('input');
+
+            card.setAttribute('id', 'pac-card');
+            title.setAttribute('id', 'title');
+            title.textContent = 'Find the nearest covid test site';
+            titleBar.appendChild(title);
+            container.setAttribute('id', 'pac-container');
+            input.setAttribute('id', 'pac-input');
+            input.setAttribute('type', 'text');
+            input.setAttribute('placeholder', 'Enter an address');
+            container.appendChild(input);
+            card.appendChild(titleBar);
+            card.appendChild(container);
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+            // Make the search bar into a Places Autocomplete search bar and select
+            // which detail fields should be returned about the place that
+            // the user selects from the suggestions.
+
+            const autocomplete = new google.maps.places.Autocomplete(input);
+
+            autocomplete.setFields(
+                ['address_components', 'geometry', 'name']
+            );
+
+            const originMarker = new google.maps.Marker({
+                map: map
+            });
+
+            originMarker.setVisible(false);
+            let originLocation = map.getCenter();
+
+            autocomplete.addListener('place_changed', async () => {
+                originMarker.setVisible(false);
+                originLocation = map.getCenter();
+                const place = autocomplete.getPlace();
+
+                if (!place.geometry) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+
+                    window.alert('No Address available for input: \'' + place.name + '\'');
+                    return;
+                }
+
+                // recenter the map to the selected address
+
+                originLocation = place.geometry.location;
+                map.setCenter(originLocation);
+                map.setZoom(9);
+                console.log(place);
+
+                originMarker.setPosition(originLocation);
+                originMarker.setVisible(true);
+
+                // Use the selected address as the origin to calculate distances
+                // to each of the store locations
+                const rankedStores = await calculateDistances(map.data, originLocation);
+                showStoresList(map.data, rankedStores);
+
+                return;
+            });
+        }
+
+        async function calculateDistances(data, origin) {
+            const stores = [];
+            const destinations = [];
+
+            // build parallel arrays for the store IDs and destinations
+            data.forEach((store) => {
+                const storeNum = store.getProperty('storeid');
+                const storeLoc = store.getGeometry().get();
+
+                stores.push(storeNum);
+                destinations.push(storeLoc);
+            });
+
+            // Retrieve the distances of each store from the origin
+            // The returned list will be in the same order as the destinations list
+
+            const service = new google.maps.DistanceMatrixService();
+            const getDistanceMatrix = (service, parameters) => new Promise((resolve, reject) => {
+                service.getDistanceMatrix(parameters, (response, status) => {
+                    if (status != google.maps.DistanceMatrixStatus.OK) {
+                        reject(response);
+                    } else {
+                        const distances = [];
+                        const results = response.rows[0].elements;
+                        for (let j = 0; j < results.length; j++) {
+                            const element = results[j];
+                            const distanceText = element.distance.text;
+                            const distanceVal = element.distance.value;
+                            const distanceObject = {
+                                storeid: stores[j],
+                                distanceText:distanceText,
+                                distanceVal: distanceVal,
+                            };
+                            distances.push(distanceObject);
+                        }
+                        resolve(distances);
+                    }
+                });
+            });
+
+            const distancesList = await getDistanceMatrix(service, {
+                origins: [origin],
+                destinations: destinations,
+                travelMode:'DRIVING',
+                unitSystem: google.maps.UnitSystem.METRIC,
+            });
+
+            distancesList.sort((first, second) => {
+                return first.distanceVal - second.distanceVal;
+            });
+
+            return distancesList;
+
+        }
+
+        function showStoresList(data, stores) {
+            if (stores.length ==0) {
+                console.log('empty stores');
+                return;
+            }
+
+            let panel = document.createElement('div');
+
+            // if the  panel already exists, use it. Else, creat it and add to the page
+
+            if (document.getElementById('panel')) {
+                panel = document.getElementById('panel');
+                // if panel is already open, close it
+                if (panel.classList.contains('open')) {
+                    panel.classList.remove('open');
+                }
+            } else {
+                panel.setAttribute('id', 'panel');
+                const body = document.body;
+                body.insertBefore(panel, body.childNodes[0]);
+            }
+
+            // clear the previous details
+
+            while (panel.lastChild) {
+                panel.removeChild(panel.lastChild);
+            }
+
+            stores.forEach((store) => {
+                // add store details with text formatting
+
+                const name = document.createElement('p');
+                name.classList.add('place');
+                const currentStore = data.getFeatureById(store.storeid);
+                name.textContent = currentStore.getProperty('name');
+                panel.appendChild(name);
+                const distanceText = document.createElement('p');
+                distanceText.classList.add('distanceText');
+                distanceText.textContent = store.distanceText;
+                panel.appendChild(distanceText);
+            })
+
+            // open the panel
+
+            panel.classList.add('open');
+
+            return;
+        };
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2QAcz4Y1MAWXMYb6xhKQBWShUnxjrTmc&libraries=places&callback=initMap">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.700522, 45.524711]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "8am-8pm Mon-Fri, 9am-6pm Sat/Sun",
+                "description": "Schedule your appointment within 72 hours of departure. We recommend planning ahead when scheduling to guarantee availability.Ask for the Rapid RNA Molecular test when you arrive for your appointment.Get your printed results and enjoy your trip!",
+                "test": "Rapid RNA Molecular",
+                "cost": "$199",
+                "name": "AFC Urgent Care NW Portland",
+                "phone": "(503) 305-6262",
+                "address": "25 NW 23rd Place,Portland,OR 97210,United States ",
+                "website": "https://afcurgentcareportland.com/traveling-hawaii",
+                "storeid": "01"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.590430, 45.548709]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "8am-8pm Mon-Fri, 9am-6pm Sat/Sun",
+                "description": "Schedule your appointment within 72 hours of departure. We recommend planning ahead when scheduling to guarantee availability.Ask for the Rapid RNA Molecular test when you arrive for your appointment.Get your printed results and enjoy your trip!",
+                "test": "Rapid RNA Molecular",
+                "cost": "$199",
+                "name": "NE Portland Urgent Care",
+                "phone": "(503) 305-6262",
+                "address": "7033 NE Sandy Blvd,Portland,OR 97213,United States ",
+                "website": "https://afcurgentcareportland.com/traveling-hawaii",
+                "storeid": "02"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.737340, 45.400932]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "8am-8pm Mon-Fri, 9am-6pm Sat/Sun",
+                "description": "Schedule your appointment within 72 hours of departure. We recommend planning ahead when scheduling to guarantee availability.Ask for the Rapid RNA Molecular test when you arrive for your appointment. Get your printed results and enjoy your trip!",
+                "test": "Rapid RNA Molecular",
+                "cost": "$199",
+                "name": "AFC Urgent Care Lake Oswego",
+                "phone": "(503) 305-6262",
+                "address": "17437 Boones Ferry Rd, Lake Oswego,OR 97035, United States ",
+                "website": "https://afcurgentcareportland.com/traveling-hawaii",
+                "storeid": "03"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.823806, 45.477082]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "8am-8pm Mon-Fri, 9am-6pm Sat/Sun",
+                "description": "Schedule your appointment within 72 hours of departure. We recommend planning ahead when scheduling to guarantee availability. Ask for the Rapid RNA Molecular test when you arrive for your appointment.Get your printed results and enjoy your trip!",
+                "test": "Rapid RNA Molecular",
+                "cost": "$199",
+                "name": "AFC Urgent Care Beaverton",
+                "phone": "(503) 305-6262",
+                "address": "14278 SW Allen Blvd, Beaverton, OR 97005, United States ",
+                "website": "https://afcurgentcareportland.com/traveling-hawaii",
+                "storeid": "04"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.591240, 45.337633]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "8am-8pm Mon-Fri, 9am-6pm Sat/Sun",
+                "description": "Schedule your appointment within 72 hours of departure. We recommend planning ahead when scheduling to guarantee availability. Ask for the Rapid RNA Molecular test when you arrive for your appointment. Get your printed results and enjoy your trip!",
+                "test": "Rapid RNA Molecular",
+                "cost": "$199",
+                "name": "AFC Urgent Care Oregon City",
+                "phone": "(503) 305-6262",
+                "address": "397 Warner Milne Rd, Oregon City, OR 97045, United States",
+                "website": "https://afcurgentcareportland.com/traveling-hawaii",
+                "storeid": "05"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.152643, 47.447168]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "7:15am-3pm Mon-Fri, 8am-4pm Sat/Sun",
+                "description": "This testing program is for symptom-free travelers who do not feel sick. This program is not intended for use by anyone who has symptoms or is feeling sick. If you are feeling sick, please contact your healthcare provider. Note, that you will need to make your appointment at least 24 hours in advance.If your preferred location is booked, please check our other locations.",
+                "test": "Rapid RNA Molecular",
+                "cost": "$125",
+                "name": "Bartell Drugs",
+                "phone": "+14252267000",
+                "address": "17254 140th Ave. SE, Renton, WA, US, 98058",
+                "website": "https://www.bartelldrugs.com/alaska-airlines-covid-testing/",
+                "storeid": "06"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.267688, 47.821136]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "7:15am-3pm Mon-Fri, 8am-4pm Sat/Sun",
+                "description": "This testing program is for symptom-free travelers who do not feel sick. This program is not intended for use by anyone who has symptoms or is feeling sick. If you are feeling sick, please contact your healthcare provider. Note, that you will need to make your appointment at least 24 hours in advance.If your preferred location is booked, please check our other locations.",
+                "test": "Rapid RNA Molecular",
+                "cost": "$125",
+                "name": "Bartell Drugs",
+                "phone": "+14256737065",
+                "address": "2518 196th St. SW, Lynnwood, WA, US, 98036",
+                "website": "https://www.bartelldrugs.com/alaska-airlines-covid-testing/",
+                "storeid": "07"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.205619, 47.619182]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "7:15am-3pm Mon-Fri, 8am-4pm Sat/Sun",
+                "description": "This testing program is for symptom-free travelers who do not feel sick. This program is not intended for use by anyone who has symptoms or is feeling sick. If you are feeling sick, please contact your healthcare provider. Note, that you will need to make your appointment at least 24 hours in advance.If your preferred location is booked, please check our other locations.",
+                "test": "Rapid RNA Molecular",
+                "cost": "$125",
+                "name": "Bartell Drugs",
+                "phone": "+14254542468",
+                "address": "10116 NE 8th St, Bellevue, WA, US, 98004",
+                "website": "https://www.bartelldrugs.com/alaska-airlines-covid-testing/",
+                "storeid": "08"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.322683, 47.680387]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "7:15am-3pm Mon-Fri, 8am-4pm Sat/Sun",
+                "description": "This testing program is for symptom-free travelers who do not feel sick. This program is not intended for use by anyone who has symptoms or is feeling sick. If you are feeling sick, please contact your healthcare provider. Note, that you will need to make your appointment at least 24 hours in advance.If your preferred location is booked, please check our other locations.",
+                "test": "Rapid RNA Molecular",
+                "cost": "$125",
+                "name": "Bartell Drugs",
+                "phone": "+12062880052",
+                "address": "419 NE 71st Street , Seattle, WA, US, 98115",
+                "website": "https://www.bartelldrugs.com/alaska-airlines-covid-testing/",
+                "storeid": "09"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-122.299274, 47.408297]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "covid-test-site",
+                "hours": "7:15am-3pm Mon-Fri, 8am-4pm Sat/Sun",
+                "description": "This testing program is for symptom-free travelers who do not feel sick. This program is not intended for use by anyone who has symptoms or is feeling sick. If you are feeling sick, please contact your healthcare provider. Note, that you will need to make your appointment at least 24 hours in advance.If your preferred location is booked, please check our other locations.",
+                "test": "Rapid RNA Molecular",
+                "cost": "$125",
+                "name": "Bartell Drugs",
+                "phone": "+12068784627",
+                "address": "21615 Pacific Hwy. S, Des Moines, WA, US, 98198",
+                "website": "https://www.bartelldrugs.com/alaska-airlines-covid-testing/",
+                "storeid": "10"
+            }
+        }
+    ]
+}
